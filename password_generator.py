@@ -61,9 +61,13 @@ if __name__ == "__main__":
         length = int(input("Lunghezza [12]: "))
         avoid_ambiguous = input("Evitare caratteri ambigui? (y/n) [y]: ") == "y"
         save_password = input("Salvare su file? (y/n) [y]: ") == "y"
-        print("Path del file: ~/passwords/sith_lord.txt")
-        password_generated = generate_password(length=length, use_upper=use_upper, use_lower=use_lower, use_digits=use_digits, use_symbols=use_symbols, avoid_ambiguous=avoid_ambiguous)
+        password_generated = generate_password(length=length, use_upper=use_upper, use_lower=use_lower,
+                                               use_digits=use_digits, use_symbols=use_symbols,
+                                               avoid_ambiguous=avoid_ambiguous)
         print(f"Password generata: {password_generated}")
-        print(input("Salvata in /Users/marco/passwords/sith_lord.txt"))
+        if save_password:
+            file = input("Percorso del file: ")
+            Path(file).expanduser().write_text(password_generated)
+            print(f"Salvata in {file}")
 
 
